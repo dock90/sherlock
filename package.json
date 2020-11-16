@@ -1,0 +1,22 @@
+{
+  "name": "sherlock",
+  "version": "0.1.0",
+  "description": "An app that helps people choose between multiple offer ideas.",
+  "main": "index.js",
+  "repository": "git@github.com:dock90/sherlock.git",
+  "author": "EdwardGoomba <edward@dock90.io>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "export": "next build && next export"
+  },
+  "dependencies": {
+    "next": "^10.0.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "styled-components": "^5.2.1"
+  }
+}
