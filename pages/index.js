@@ -26,7 +26,8 @@ const Container = styled.div`
 const Body = styled.div`
   display: grid;
   justify-content: center;
-  margin-top: 10rem;
+  max-width: 90vw;
+  margin: 10rem auto 0 auto;
 
   button {
     background: ${({ theme }) => theme.colors.primary};
@@ -37,7 +38,7 @@ const Body = styled.div`
     min-width: 200px;
     border: none;
     border-radius: 5px;
-    box-shadow: 0 1px 3px hsla(0, 0%, 0%, .2);
+    box-shadow: 0 3px 10px 3px rgba(0,0,0,0.1)
   }
 `
 
@@ -113,15 +114,17 @@ const Home = () => {
           <Drumroll setStage={setStage} />
         }
         {stage === 'results' &&
-          <Results />
+          <Results setStage={setStage} />
         }
       </Body>
-      <BroughtBy>
-        <img src='/jasoncaroline.png' />
-        <div>
-          <h4>Brought to <br />you by WAIM</h4>
-        </div>
-      </BroughtBy>
+      {stage === 'start' &&
+        <BroughtBy>
+          <img src='/jasoncaroline.png' />
+          <div>
+            <h4>Brought to <br />you by WAIM</h4>
+          </div>
+        </BroughtBy>
+      }
     </Container>
   )
 }

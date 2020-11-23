@@ -1,7 +1,23 @@
 import styled from 'styled-components'
 
 const Container = styled.div`
-  display: grid;
+  text-align: center;
+
+  input {
+    display: grid;
+    margin: 2rem auto;
+    font-size: 20px;
+    padding: 12px 16px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px hsla(0, 0%, 0%, .2);
+    min-width: 400px;
+
+    :focus {
+      box-shadow: 0 1px 3px hsla(237, 100%, 58%, .6);
+      outline: none;
+    }
+  }
 `
 
 const Pricing = ({ setStage }) => (

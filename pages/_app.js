@@ -1,5 +1,14 @@
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
 
+const theme = {
+  colors: {
+    primary: 'hsl(237, 100%, 58%)',
+    light1: '#FFFFFF',
+    dark1: '#333333',
+    dark2: '#494949'
+  },
+}
+
 const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
@@ -9,19 +18,14 @@ const GlobalStyle = createGlobalStyle`
   }
 
   h1 {
-    color: #333333;
+    color: ${theme.colors.dark1};
     font-size: 44px;
-    line-height: 54px;
+  }
+
+  h2 {
+    color: ${theme.colors.dark2};
   }
 `
-
-const theme = {
-  colors: {
-    primary: '#2831ff',
-    light1: '#FFFFFF',
-    dark1: '#333333'
-  },
-}
 
 export default function App({ Component, pageProps }) {
   return (
