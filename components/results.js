@@ -5,6 +5,10 @@ const Container = styled.div`
   display: grid;
 `
 
+// TODO: add jason / caroline in top right corner
+// TODO: add confetti
+// TODO: add winner offer sticker on left side of offer name
+
 const Results = () => (
   <Container>
     <h1>Offer Name!</h1>

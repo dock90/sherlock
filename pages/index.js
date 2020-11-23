@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import styled from 'styled-components'
 // components
+import Header from '../components/header'
 import Start from '../components/start'
 import Idea from '../components/idea'
 import Scalability from '../components/scalability'
@@ -17,6 +18,53 @@ import Results from '../components/results'
 // styles
 const Container = styled.div`
   display: grid;
+  grid-template-rows: 100px auto;
+  grid-template-columns: 1fr;
+  height: 100vh;
+`
+
+const Body = styled.div`
+  display: grid;
+  justify-content: center;
+  margin-top: 10rem;
+
+  button {
+    background: ${({ theme }) => theme.colors.primary};
+    color: ${({ theme }) => theme.colors.light1};
+    font-size: 24px;
+    text-transform: uppercase;
+    padding: 10px 15px;
+    min-width: 200px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px hsla(0, 0%, 0%, .2);
+  }
+`
+
+const BroughtBy = styled.div`
+  display: grid;
+  align-self: end;
+
+  img {
+    width: 100%;
+    height: auto;
+    max-width: 250px;
+    border-radius: 5px;
+  }
+
+  div {
+    position: absolute;
+    bottom: 1%;
+    left: 8%;
+    background: #fef0f0;
+    border-radius: 5px;
+    padding: 0 1rem;
+    box-shadow: 0 4px 6px hsla(0, 0%, 0%, .1);
+
+    h4 {
+      color: ${({ theme }) => theme.colors.dark1};
+    }
+  }
 `
 // overall flows
 
@@ -32,39 +80,48 @@ const Home = () => {
   const [stage, setStage] = useState('start')
   return (
     <Container>
-      {stage === 'start' &&
-        <Start setStage={setStage} />
-      }
-      {stage === 'idea' &&
-        <Idea setStage={setStage} />
-      }
-      {stage === 'scalability' &&
-        <Scalability setStage={setStage} />
-      }
-      {stage === 'interest' &&
-        <Interest setStage={setStage} />
-      }
-      {stage === 'validation' &&
-        <Validation setStage={setStage} />
-      }
-      {stage === 'intermission' &&
-        <Intermission setStage={setStage} />
-      }
-      {stage === 'numbers' &&
-        <Numbers setStage={setStage} />
-      }
-      {stage === 'revenue-goal' &&
-        <RevenueGoal setStage={setStage} />
-      }
-      {stage === 'pricing' &&
-        <Pricing setStage={setStage} />
-      }
-      {stage === 'drumroll' &&
-        <Drumroll setStage={setStage} />
-      }
-      {stage === 'results' &&
-        <Results />
-      }
+      <Header />
+      <Body>
+        {stage === 'start' &&
+          <Start setStage={setStage} />
+        }
+        {stage === 'idea' &&
+          <Idea setStage={setStage} />
+        }
+        {stage === 'scalability' &&
+          <Scalability setStage={setStage} />
+        }
+        {stage === 'interest' &&
+          <Interest setStage={setStage} />
+        }
+        {stage === 'validation' &&
+          <Validation setStage={setStage} />
+        }
+        {stage === 'intermission' &&
+          <Intermission setStage={setStage} />
+        }
+        {stage === 'numbers' &&
+          <Numbers setStage={setStage} />
+        }
+        {stage === 'revenue-goal' &&
+          <RevenueGoal setStage={setStage} />
+        }
+        {stage === 'pricing' &&
+          <Pricing setStage={setStage} />
+        }
+        {stage === 'drumroll' &&
+          <Drumroll setStage={setStage} />
+        }
+        {stage === 'results' &&
+          <Results />
+        }
+      </Body>
+      <BroughtBy>
+        <img src='/jasoncaroline.png' />
+        <div>
+          <h4>Brought to <br />you by WAIM</h4>
+        </div>
+      </BroughtBy>
     </Container>
   )
 }
