@@ -124,10 +124,20 @@ const Home = () => {
           />
         }
         {stage === 'interest' &&
-          <Interest setStage={setStage} />
+          <Interest
+            ideaID={ideaID}
+            ideaData={ideaData}
+            setIdeaData={setIdeaData}
+            setStage={setStage}
+          />
         }
         {stage === 'validation' &&
-          <Validation setStage={setStage} />
+          <Validation
+            ideaID={ideaID}
+            ideaData={ideaData}
+            setIdeaData={setIdeaData}
+            setStage={setStage}
+          />
         }
         {stage === 'intermission' &&
           <Intermission setStage={setStage} />
@@ -146,6 +156,7 @@ const Home = () => {
         }
         {stage === 'results' &&
           <Results
+            setIdeaID={setIdeaID}
             setIdeaData={setIdeaData}
             setStage={setStage}
           />

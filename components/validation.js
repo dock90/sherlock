@@ -11,12 +11,29 @@ const Container = styled.div`
   }
 `
 
-const Validation = ({ setStage }) => {
+const Validation = ({
+  ideaData,
+  ideaID,
+  setIdeaData,
+  setStage
+}) => {
   const [validation, setValidation] = useState(50)
 
   const handleValidationChange = () => {
     const { target: { value } } = event
     setValidation(value)
+  }
+
+  const storeValidation = () => {
+    const currentData = ideaData.map(data => {
+      if (data.id === ideaID) {
+        data.validation = validation
+      }
+      return data
+    })
+
+    setIdeaData(currentData)
+    setStage('intermission')
   }
 
   return (
@@ -31,7 +48,7 @@ const Validation = ({ setStage }) => {
         type='range'
         value={validation}
       />
-      <button onClick={() => setStage('intermission')}>Next</button>
+      <button onClick={storeValidation}>Next</button>
     </Container>
   )
 }

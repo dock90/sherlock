@@ -79,6 +79,7 @@ const NextSteps = styled.div`
 const Results = ({ setIdeaData, setStage }) => {
   const restart = () => {
     setIdeaData([])
+    setIdeaID()
     setStage('idea')
   }
 

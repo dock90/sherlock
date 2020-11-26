@@ -11,12 +11,29 @@ const Container = styled.div`
   }
 `
 
-const Interest = ({ setStage }) => {
+const Interest = ({
+  ideaData,
+  ideaID,
+  setIdeaData,
+  setStage
+}) => {
   const [interest, setInterest] = useState(50)
 
   const handleInterestChange = () => {
     const { target: { value } } = event
     setInterest(value)
+  }
+
+  const storeInterest = () => {
+    const currentData = ideaData.map(data => {
+      if (data.id === ideaID) {
+        data.interest = interest
+      }
+      return data
+    })
+
+    setIdeaData(currentData)
+    setStage('validation')
   }
 
   return (
@@ -31,7 +48,7 @@ const Interest = ({ setStage }) => {
         type='range'
         value={interest}
       />
-      <button onClick={() => setStage('validation')}>Next</button>
+      <button onClick={storeInterest}>Next</button>
     </Container>
   )
 }
