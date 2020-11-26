@@ -11,8 +11,6 @@ const Hint = styled.p`
   color: #bfbfbf;
 `
 
-// TODO: add jason and caroline in bottom left corner w / brought to you by waim text
-
 const Start = ({ setStage }) => (
   <Container>
     <h1>Let's Identify Your Offer!</h1>

@@ -77,8 +77,27 @@ const BroughtBy = styled.div`
 // revenue goal, pricing
 // repeat numbers cycle per idea
 
+// data structure
+const data = [
+  {
+    id: Number,
+    idea: String,
+    scalability: Number,
+    interest: Number,
+    validation: Number,
+    revenueGoal: Number,
+    pricing: Number
+  }
+]
+
+// pass in id to state set
+
 const Home = () => {
   const [stage, setStage] = useState('start')
+  const [ideaData, setIdeaData] = useState([])
+
+  console.log('Main Data Store: ', ideaData)
+
   return (
     <Container>
       <Header />
@@ -87,7 +106,11 @@ const Home = () => {
           <Start setStage={setStage} />
         }
         {stage === 'idea' &&
-          <Idea setStage={setStage} />
+          <Idea
+            ideaData={ideaData}
+            setIdeaData={setIdeaData}
+            setStage={setStage}
+          />
         }
         {stage === 'scalability' &&
           <Scalability setStage={setStage} />
@@ -114,7 +137,10 @@ const Home = () => {
           <Drumroll setStage={setStage} />
         }
         {stage === 'results' &&
-          <Results setStage={setStage} />
+          <Results
+            setIdeaData={setIdeaData}
+            setStage={setStage}
+          />
         }
       </Body>
       {stage === 'start' &&
