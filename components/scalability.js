@@ -11,13 +11,29 @@ const Container = styled.div`
   }
 `
 
-const Scalability = ({ setStage }) => {
+const Scalability = ({
+  ideaData,
+  ideaID,
+  setIdeaData,
+  setStage
+}) => {
   const [scalability, setScalability] = useState(50)
 
   const handleScalabilityChange = () => {
     const { target: { value } } = event
-    console.log('Changing: ', event.target.value)
     setScalability(value)
+  }
+
+  const storeScalability = () => {
+    const currentData = ideaData.map(data => {
+      if (data.id === ideaID) {
+        data.scalability = scalability
+      }
+      return data
+    })
+
+    setIdeaData(currentData)
+    setStage('interest')
   }
 
   return (
@@ -32,7 +48,7 @@ const Scalability = ({ setStage }) => {
         type='range'
         value={scalability}
       />
-      <button onClick={() => setStage('interest')}>Next</button>
+      <button onClick={storeScalability}>Next</button>
     </Container>
   )
 }

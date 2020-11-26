@@ -21,15 +21,22 @@ const Container = styled.div`
   }
 `
 
-const Idea = ({ ideaData, setStage, setIdeaData }) => {
+const Idea = ({
+  ideaData,
+  setIdeaData,
+  setIdeaID,
+  setStage
+}) => {
   const [idea, setIdea] = useState('')
 
   const storeIdea = () => {
+    const id = Math.floor(Math.random() * 1000)
     const currentIdea = {
-      id: Math.floor(Math.random() * 1000),
+      id: id,
       idea: idea
     }
 
+    setIdeaID(id)
     setIdeaData([
       ...ideaData,
       currentIdea

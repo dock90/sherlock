@@ -95,8 +95,10 @@ const data = [
 const Home = () => {
   const [stage, setStage] = useState('start')
   const [ideaData, setIdeaData] = useState([])
+  const [ideaID, setIdeaID] = useState()
 
   console.log('Main Data Store: ', ideaData)
+  console.log('Current Idea ID: ', ideaID)
 
   return (
     <Container>
@@ -109,11 +111,17 @@ const Home = () => {
           <Idea
             ideaData={ideaData}
             setIdeaData={setIdeaData}
+            setIdeaID={setIdeaID}
             setStage={setStage}
           />
         }
         {stage === 'scalability' &&
-          <Scalability setStage={setStage} />
+          <Scalability
+            ideaID={ideaID}
+            ideaData={ideaData}
+            setIdeaData={setIdeaData}
+            setStage={setStage}
+          />
         }
         {stage === 'interest' &&
           <Interest setStage={setStage} />
