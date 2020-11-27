@@ -67,30 +67,19 @@ const BroughtBy = styled.div`
     }
   }
 `
-// overall flows
-
-// idea cycle
-// idea, scalability, interest, validation
-// add another idea - loop back through questions
-
-// numbers cycle
-// revenue goal, pricing
-// repeat numbers cycle per idea
 
 // data structure
-const data = [
-  {
-    id: Number,
-    idea: String,
-    scalability: Number,
-    interest: Number,
-    validation: Number,
-    revenueGoal: Number,
-    pricing: Number
-  }
-]
-
-// pass in id to state set
+// const data = [
+//   {
+//     id: Number,
+//     idea: String,
+//     scalability: Number,
+//     interest: Number,
+//     validation: Number,
+//     revenueGoal: Number,
+//     price: Number
+//   }
+// ]
 
 const Home = () => {
   const [stage, setStage] = useState('start')
@@ -163,7 +152,10 @@ const Home = () => {
           <Pricing
             ideaID={ideaID}
             ideaData={ideaData}
+            ideaPositionID={ideaPositionID}
             setIdeaData={setIdeaData}
+            setIdeaID={setIdeaID}
+            setIdeaPositionID={setIdeaPositionID}
             setStage={setStage}
           />
         }

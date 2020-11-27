@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import styled from 'styled-components'
 
 const Container = styled.div`
@@ -20,13 +21,50 @@ const Container = styled.div`
   }
 `
 
-const Pricing = ({ setStage }) => (
-  <Container>
-    <h1>💰 What price were you thinking of charging for “A Course Teaching People Photoshop”?</h1>
-    <p>Ex: $99 (you probably didn’t need this example 😉)</p>
-    <input type='text' />
-    <button onClick={() => setStage('drumroll')}>Next</button>
-  </Container>
-)
+const Pricing = ({
+  ideaData,
+  ideaID,
+  ideaPositionID,
+  setIdeaData,
+  setIdeaID,
+  setIdeaPositionID,
+  setStage
+}) => {
+  const [price, setPrice] = useState('')
+
+  const storePriceData = () => {
+    const currentData = ideaData.map(data => {
+      if (data.id === ideaID) {
+        data.price = price
+      }
+      return data
+    })
+
+    setIdeaData(currentData)
+
+    const nextID = ideaPositionID + 1
+
+    if (nextID < ideaData.length) {
+      setIdeaPositionID(nextID)
+      setIdeaID(ideaData[nextID].id)
+      setStage('revenue-goal')
+    } else {
+      setStage('drumroll')
+    }
+  }
+
+  return (
+    <Container>
+      <h1>💰 What price were you thinking of charging for “A Course Teaching People Photoshop”?</h1>
+      <p>Ex: $99 (you probably didn’t need this example 😉)</p>
+      <input
+        onChange={() => setPrice(event.target.value)}
+        type='text'
+        value={price}
+      />
+      <button onClick={storePriceData}>Next</button>
+    </Container>
+  )
+}
 
 export default Pricing
