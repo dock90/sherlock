@@ -96,6 +96,7 @@ const Home = () => {
   const [stage, setStage] = useState('start')
   const [ideaData, setIdeaData] = useState([])
   const [ideaID, setIdeaID] = useState()
+  const [ideaPositionID, setIdeaPositionID] = useState(0)
 
   console.log('Main Data Store: ', ideaData)
   console.log('Current Idea ID: ', ideaID)
@@ -143,13 +144,28 @@ const Home = () => {
           <Intermission setStage={setStage} />
         }
         {stage === 'numbers' &&
-          <Numbers setStage={setStage} />
+          <Numbers
+            ideaData={ideaData}
+            ideaPositionID={ideaPositionID}
+            setIdeaID={setIdeaID}
+            setStage={setStage}
+          />
         }
         {stage === 'revenue-goal' &&
-          <RevenueGoal setStage={setStage} />
+          <RevenueGoal
+            ideaID={ideaID}
+            ideaData={ideaData}
+            setIdeaData={setIdeaData}
+            setStage={setStage}
+          />
         }
         {stage === 'pricing' &&
-          <Pricing setStage={setStage} />
+          <Pricing
+            ideaID={ideaID}
+            ideaData={ideaData}
+            setIdeaData={setIdeaData}
+            setStage={setStage}
+          />
         }
         {stage === 'drumroll' &&
           <Drumroll setStage={setStage} />

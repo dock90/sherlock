@@ -76,7 +76,11 @@ const NextSteps = styled.div`
 // TODO: add confetti
 // TODO: add winner offer sticker on left side of offer name
 
-const Results = ({ setIdeaData, setStage }) => {
+const Results = ({
+  setIdeaID,
+  setIdeaData,
+  setStage
+}) => {
   const restart = () => {
     setIdeaData([])
     setIdeaID()
