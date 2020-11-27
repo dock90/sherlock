@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import styled from 'styled-components'
 
 const Container = styled.div`
@@ -20,14 +21,42 @@ const Container = styled.div`
   }
 `
 
-const RevenueGoal = ({ setStage }) => (
-  <Container>
-    <h1>What is your annual Total Revenue Goal 💰 for this idea?</h1>
-    <p>Ex: $20,000 means you would want this idea to generate $20,000 in the next 12 months.</p>
-    <p>That could be with multiple launches or an evergreen sales funnel.</p>
-    <input type='text' />
-    <button onClick={() => setStage('pricing')}>Next</button>
-  </Container>
-)
+const RevenueGoal = ({
+  ideaData,
+  ideaID,
+  ideaPositionID,
+  setIdeaData,
+  setStage
+}) => {
+  const [revenueGoal, setRevenueGoal] = useState('')
+
+  const idea = ideaData[ideaPositionID].idea
+
+  const storeRevenueData = () => {
+    const currentData = ideaData.map(data => {
+      if (data.id === ideaID) {
+        data.revenueGoal = revenueGoal
+      }
+      return data
+    })
+
+    setIdeaData(currentData)
+    setStage('pricing')
+  }
+
+  return (
+    <Container>
+      <h1>What is your annual Total Revenue Goal 💰 for {idea}?</h1>
+      <p>Ex: $20,000 means you would want this idea to generate $20,000 in the next 12 months.</p>
+      <p>That could be with multiple launches or an evergreen sales funnel.</p>
+      <input
+        onChange={() => setRevenueGoal(event.target.value)}
+        type='text'
+        value={revenueGoal}
+      />
+      <button onClick={storeRevenueData}>Next</button>
+    </Container>
+  )
+}
 
 export default RevenueGoal

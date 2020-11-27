@@ -11,19 +11,38 @@ const Container = styled.div`
   }
 `
 
-const Scalability = ({ setStage }) => {
+const Scalability = ({
+  ideaData,
+  ideaID,
+  ideaPositionID,
+  setIdeaData,
+  setStage
+}) => {
   const [scalability, setScalability] = useState(50)
+
+  const idea = ideaData[ideaPositionID].idea
 
   const handleScalabilityChange = () => {
     const { target: { value } } = event
-    console.log('Changing: ', event.target.value)
     setScalability(value)
+  }
+
+  const storeScalability = () => {
+    const currentData = ideaData.map(data => {
+      if (data.id === ideaID) {
+        data.scalability = scalability
+      }
+      return data
+    })
+
+    setIdeaData(currentData)
+    setStage('interest')
   }
 
   return (
     <Container>
       <h1>Question #2</h1>
-      <h2>Rate the Scalability/Sustainability of “YOUR IDEA HERE” from 1-10.</h2>
+      <h2>Rate the Scalability/Sustainability of {idea} from 1-10.</h2>
       <p>1 = not a lot of revenue potential plus a high time investment</p>
       <p>10 = very scalable financially</p>
       <input
@@ -32,7 +51,7 @@ const Scalability = ({ setStage }) => {
         type='range'
         value={scalability}
       />
-      <button onClick={() => setStage('interest')}>Next</button>
+      <button onClick={storeScalability}>Next</button>
     </Container>
   )
 }

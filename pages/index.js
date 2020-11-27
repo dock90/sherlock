@@ -67,18 +67,29 @@ const BroughtBy = styled.div`
     }
   }
 `
-// overall flows
 
-// idea cycle
-// idea, scalability, interest, validation
-// add another idea - loop back through questions
-
-// numbers cycle
-// revenue goal, pricing
-// repeat numbers cycle per idea
+// data structure
+// const data = [
+//   {
+//     id: Number,
+//     idea: String,
+//     scalability: Number,
+//     interest: Number,
+//     validation: Number,
+//     revenueGoal: Number,
+//     price: Number
+//   }
+// ]
 
 const Home = () => {
   const [stage, setStage] = useState('start')
+  const [ideaData, setIdeaData] = useState([])
+  const [ideaID, setIdeaID] = useState()
+  const [ideaPositionID, setIdeaPositionID] = useState(0)
+
+  console.log('Main Data Store: ', ideaData)
+  console.log('Current Idea ID: ', ideaID)
+
   return (
     <Container>
       <Header />
@@ -87,34 +98,84 @@ const Home = () => {
           <Start setStage={setStage} />
         }
         {stage === 'idea' &&
-          <Idea setStage={setStage} />
+          <Idea
+            ideaData={ideaData}
+            setIdeaData={setIdeaData}
+            setIdeaID={setIdeaID}
+            setStage={setStage}
+          />
         }
         {stage === 'scalability' &&
-          <Scalability setStage={setStage} />
+          <Scalability
+            ideaID={ideaID}
+            ideaData={ideaData}
+            ideaPositionID={ideaPositionID}
+            setIdeaData={setIdeaData}
+            setStage={setStage}
+          />
         }
         {stage === 'interest' &&
-          <Interest setStage={setStage} />
+          <Interest
+            ideaID={ideaID}
+            ideaData={ideaData}
+            ideaPositionID={ideaPositionID}
+            setIdeaData={setIdeaData}
+            setStage={setStage}
+          />
         }
         {stage === 'validation' &&
-          <Validation setStage={setStage} />
+          <Validation
+            ideaID={ideaID}
+            ideaData={ideaData}
+            ideaPositionID={ideaPositionID}
+            setIdeaData={setIdeaData}
+            setStage={setStage}
+          />
         }
         {stage === 'intermission' &&
-          <Intermission setStage={setStage} />
+          <Intermission
+            ideaPositionID={ideaPositionID}
+            setIdeaPositionID={setIdeaPositionID}
+            setStage={setStage}
+          />
         }
         {stage === 'numbers' &&
-          <Numbers setStage={setStage} />
+          <Numbers
+            ideaData={ideaData}
+            setIdeaPositionID={setIdeaPositionID}
+            setIdeaID={setIdeaID}
+            setStage={setStage}
+          />
         }
         {stage === 'revenue-goal' &&
-          <RevenueGoal setStage={setStage} />
+          <RevenueGoal
+            ideaID={ideaID}
+            ideaData={ideaData}
+            ideaPositionID={ideaPositionID}
+            setIdeaData={setIdeaData}
+            setStage={setStage}
+          />
         }
         {stage === 'pricing' &&
-          <Pricing setStage={setStage} />
+          <Pricing
+            ideaID={ideaID}
+            ideaData={ideaData}
+            ideaPositionID={ideaPositionID}
+            setIdeaData={setIdeaData}
+            setIdeaID={setIdeaID}
+            setIdeaPositionID={setIdeaPositionID}
+            setStage={setStage}
+          />
         }
         {stage === 'drumroll' &&
           <Drumroll setStage={setStage} />
         }
         {stage === 'results' &&
-          <Results setStage={setStage} />
+          <Results
+            setIdeaID={setIdeaID}
+            setIdeaData={setIdeaData}
+            setStage={setStage}
+          />
         }
       </Body>
       {stage === 'start' &&

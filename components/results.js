@@ -76,42 +76,54 @@ const NextSteps = styled.div`
 // TODO: add confetti
 // TODO: add winner offer sticker on left side of offer name
 
-const Results = ({ setStage }) => (
-  <Container>
-    <Offer>
-      <h1>Mobile Waffle and Ice Cream Truck!</h1>
-    </Offer>
-    <ScoreContainer>
-      <Metric>
-        <h2>Total Score</h2>
-        <h3>28</h3>
-      </Metric>
-      <Metric>
-        <h2># of Customers Needed</h2>
-        <h3>450</h3>
-      </Metric>
-    </ScoreContainer>
-    <OfferContainer>
-      <OfferLayout>
-        <div>
-          <h4>Second Place</h4>
-          <h3>Waffle Truck</h3>
-        </div>
-        <div>
-          <h4>Total Score</h4>
-          <h3>45</h3>
-        </div>
-        <div>
-          <h4># of Customers</h4>
-          <h3>23</h3>
-        </div>
-      </OfferLayout>
-    </OfferContainer>
-    <NextSteps>
-      <p>Want to test out a few other offer ideas?</p>
-      <button onClick={() => setStage('idea')}>Start Over</button>
-    </NextSteps>
-  </Container>
-)
+const Results = ({
+  setIdeaID,
+  setIdeaData,
+  setStage
+}) => {
+  const restart = () => {
+    setIdeaData([])
+    setIdeaID()
+    setStage('idea')
+  }
+
+  return (
+    <Container>
+      <Offer>
+        <h1>Mobile Waffle and Ice Cream Truck!</h1>
+      </Offer>
+      <ScoreContainer>
+        <Metric>
+          <h2>Total Score</h2>
+          <h3>28</h3>
+        </Metric>
+        <Metric>
+          <h2># of Customers Needed</h2>
+          <h3>450</h3>
+        </Metric>
+      </ScoreContainer>
+      <OfferContainer>
+        <OfferLayout>
+          <div>
+            <h4>Second Place</h4>
+            <h3>Waffle Truck</h3>
+          </div>
+          <div>
+            <h4>Total Score</h4>
+            <h3>45</h3>
+          </div>
+          <div>
+            <h4># of Customers</h4>
+            <h3>23</h3>
+          </div>
+        </OfferLayout>
+      </OfferContainer>
+      <NextSteps>
+        <p>Want to test out a few other offer ideas?</p>
+        <button onClick={restart}>Start Over</button>
+      </NextSteps>
+    </Container>
+  )
+}
 
 export default Results

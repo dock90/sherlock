@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import styled from 'styled-components'
 
 const Container = styled.div`
@@ -20,13 +21,41 @@ const Container = styled.div`
   }
 `
 
-const Idea = ({ setStage }) => (
-  <Container>
-    <h1>Question #1</h1>
-    <h2>What is your offer idea?</h2>
-    <input type='text' />
-    <button onClick={() => setStage('scalability')}>Next</button>
-  </Container>
-)
+const Idea = ({
+  ideaData,
+  setIdeaData,
+  setIdeaID,
+  setStage
+}) => {
+  const [idea, setIdea] = useState('')
+
+  const storeIdea = () => {
+    const id = Math.floor(Math.random() * 1000)
+    const currentIdea = {
+      id: id,
+      idea: idea
+    }
+
+    setIdeaID(id)
+    setIdeaData([
+      ...ideaData,
+      currentIdea
+    ])
+    setStage('scalability')
+  }
+
+  return (
+    <Container>
+      <h1>Question #1</h1>
+      <h2>What is your offer idea?</h2>
+      <input
+        onChange={() => setIdea(event.target.value)}
+        type='text'
+        value={idea}
+      />
+      <button onClick={storeIdea}>Next</button>
+    </Container>
+  )
+}
 
 export default Idea
