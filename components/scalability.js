@@ -14,10 +14,13 @@ const Container = styled.div`
 const Scalability = ({
   ideaData,
   ideaID,
+  ideaPositionID,
   setIdeaData,
   setStage
 }) => {
   const [scalability, setScalability] = useState(50)
+
+  const idea = ideaData[ideaPositionID].idea
 
   const handleScalabilityChange = () => {
     const { target: { value } } = event
@@ -39,7 +42,7 @@ const Scalability = ({
   return (
     <Container>
       <h1>Question #2</h1>
-      <h2>Rate the Scalability/Sustainability of “YOUR IDEA HERE” from 1-10.</h2>
+      <h2>Rate the Scalability/Sustainability of {idea} from 1-10.</h2>
       <p>1 = not a lot of revenue potential plus a high time investment</p>
       <p>10 = very scalable financially</p>
       <input

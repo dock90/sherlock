@@ -32,6 +32,8 @@ const Pricing = ({
 }) => {
   const [price, setPrice] = useState('')
 
+  const idea = ideaData[ideaPositionID].idea
+
   const storePriceData = () => {
     const currentData = ideaData.map(data => {
       if (data.id === ideaID) {
@@ -55,7 +57,7 @@ const Pricing = ({
 
   return (
     <Container>
-      <h1>💰 What price were you thinking of charging for “A Course Teaching People Photoshop”?</h1>
+      <h1>💰 What price were you thinking of charging for {idea}?</h1>
       <p>Ex: $99 (you probably didn’t need this example 😉)</p>
       <input
         onChange={() => setPrice(event.target.value)}

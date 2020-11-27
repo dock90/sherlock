@@ -17,12 +17,14 @@ const Hint = styled.p`
 
 const Numbers = ({
   ideaData,
-  ideaPositionID,
+  setIdeaPositionID,
   setIdeaID,
   setStage
 }) => {
   const switchFlows = () => {
-    const id = ideaData[ideaPositionID].id
+    const newID = 0
+    setIdeaPositionID(newID)
+    const id = ideaData[newID].id
     setIdeaID(id)
     setStage('revenue-goal')
   }

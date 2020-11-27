@@ -14,10 +14,13 @@ const Container = styled.div`
 const Validation = ({
   ideaData,
   ideaID,
+  ideaPositionID,
   setIdeaData,
   setStage
 }) => {
   const [validation, setValidation] = useState(50)
+
+  const idea = ideaData[ideaPositionID].idea
 
   const handleValidationChange = () => {
     const { target: { value } } = event
@@ -39,7 +42,7 @@ const Validation = ({
   return (
     <Container>
       <h1>Question #4</h1>
-      <h2>Rate the Current Validation with YOUR audience of “YOUR IDEA HERE” from 1-10.</h2>
+      <h2>Rate the Current Validation with YOUR audience of {idea} from 1-10.</h2>
       <p>1 = you have no idea if your audience needs or wants this</p>
       <p>10 = your audience has shown interest and willingness to pay</p>
       <input

@@ -109,6 +109,7 @@ const Home = () => {
           <Scalability
             ideaID={ideaID}
             ideaData={ideaData}
+            ideaPositionID={ideaPositionID}
             setIdeaData={setIdeaData}
             setStage={setStage}
           />
@@ -117,6 +118,7 @@ const Home = () => {
           <Interest
             ideaID={ideaID}
             ideaData={ideaData}
+            ideaPositionID={ideaPositionID}
             setIdeaData={setIdeaData}
             setStage={setStage}
           />
@@ -125,17 +127,22 @@ const Home = () => {
           <Validation
             ideaID={ideaID}
             ideaData={ideaData}
+            ideaPositionID={ideaPositionID}
             setIdeaData={setIdeaData}
             setStage={setStage}
           />
         }
         {stage === 'intermission' &&
-          <Intermission setStage={setStage} />
+          <Intermission
+            ideaPositionID={ideaPositionID}
+            setIdeaPositionID={setIdeaPositionID}
+            setStage={setStage}
+          />
         }
         {stage === 'numbers' &&
           <Numbers
             ideaData={ideaData}
-            ideaPositionID={ideaPositionID}
+            setIdeaPositionID={setIdeaPositionID}
             setIdeaID={setIdeaID}
             setStage={setStage}
           />
@@ -144,6 +151,7 @@ const Home = () => {
           <RevenueGoal
             ideaID={ideaID}
             ideaData={ideaData}
+            ideaPositionID={ideaPositionID}
             setIdeaData={setIdeaData}
             setStage={setStage}
           />
