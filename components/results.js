@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 
 const Container = styled.div`
@@ -40,14 +40,13 @@ const OfferContainer = styled.div``
 const OfferLayout = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  margin-bottom: 2rem;
 
-  border-top: 2px solid ${({ theme }) => theme.colors.dark2};
   border-left: 2px solid ${({ theme }) => theme.colors.dark2};
   border-right: 2px solid ${({ theme }) => theme.colors.dark2};
+  border-bottom: 2px solid ${({ theme }) => theme.colors.dark2};
 
-  :last-child {
-    border-bottom: 2px solid ${({ theme }) => theme.colors.dark2};
+  :first-child {
+    border-top: 2px solid ${({ theme }) => theme.colors.dark2};
   }
 
   h3 {
@@ -76,48 +75,102 @@ const NextSteps = styled.div`
 // TODO: add confetti
 // TODO: add winner offer sticker on left side of offer name
 
+// Total revenue goal / price = number of customers
+// total score = 3 metrics combined
+
 const Results = ({
+  ideaData,
   setIdeaID,
   setIdeaData,
   setStage
 }) => {
+  const [otherIdeas, setOtherIdeas] = useState([])
+
+  useEffect(() => {
+    const calculatedData = ideaData.map(data => {
+      const {
+        interest,
+        price,
+        revenueGoal,
+        scalability,
+        validation
+      } = data
+
+      const totalScore = parseInt(interest) + parseInt(scalability) + parseInt(validation)
+      const numberOfCustomers = parseInt(revenueGoal) / parseInt(price)
+
+      data.totalScore = totalScore
+      data.numberOfCustomers = Math.round(numberOfCustomers)
+
+      return data
+    }).sort((a, b) => {
+      if (a.totalScore < b.totalScore) return -1;
+      if (a.totalScore > b.totalScore) return 1;
+      return 0;
+    }).reverse()
+
+    setIdeaData(calculatedData)
+  }, [])
+
+  useEffect(() => {
+    if (ideaData.length > 1) {
+      ideaData.shift()
+      console.log('Idea Data Shifted: ', ideaData)
+      setOtherIdeas(ideaData)
+    }
+  }, [])
+
   const restart = () => {
     setIdeaData([])
     setIdeaID()
     setStage('idea')
   }
 
+  const bestIdea = ideaData[0]
+  const {
+    idea,
+    totalScore,
+    numberOfCustomers
+  } = bestIdea
+
   return (
     <Container>
       <Offer>
-        <h1>Mobile Waffle and Ice Cream Truck!</h1>
+        <h1>{idea}</h1>
       </Offer>
       <ScoreContainer>
         <Metric>
           <h2>Total Score</h2>
-          <h3>28</h3>
+          <h3>{totalScore}</h3>
         </Metric>
         <Metric>
           <h2># of Customers Needed</h2>
-          <h3>450</h3>
+          <h3>{numberOfCustomers}</h3>
         </Metric>
       </ScoreContainer>
-      <OfferContainer>
-        <OfferLayout>
-          <div>
-            <h4>Second Place</h4>
-            <h3>Waffle Truck</h3>
-          </div>
-          <div>
-            <h4>Total Score</h4>
-            <h3>45</h3>
-          </div>
-          <div>
-            <h4># of Customers</h4>
-            <h3>23</h3>
-          </div>
-        </OfferLayout>
-      </OfferContainer>
+      {otherIdeas &&
+        <OfferContainer>
+          {otherIdeas.map(data => {
+            const { idea, totalScore, numberOfCustomers } = data
+            return (
+              <OfferLayout>
+                <div>
+                  <h4>Second Place</h4>
+                  <h3>{idea}</h3>
+                </div>
+                <div>
+                  <h4>Total Score</h4>
+                  <h3>{totalScore}</h3>
+                </div>
+                <div>
+                  <h4># of Customers</h4>
+                  <h3>{numberOfCustomers}</h3>
+                </div>
+              </OfferLayout>
+            )
+          })}
+        </OfferContainer>
+      }
       <NextSteps>
         <p>Want to test out a few other offer ideas?</p>
         <button onClick={restart}>Start Over</button>

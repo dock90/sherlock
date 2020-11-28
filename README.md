@@ -4,11 +4,20 @@
 
 Help people choose between multiple offer ideas or at least learn more about one idea (sustainability, enjoyment, and how many customers it will take).
 
+## Technical Overview
+
+
+
+## Getting Started
+1. Checkout the repo
+2. Run `yarn` to install dependencies
+3. Run `yar dev` to run project locally
+
 ## Flows
 
 Idea Flow
 
-`Idea -> scalability -> interest ->validation`
+`Idea -> scalability -> interest -> validation`
 
 Add another idea? -> loop back through questions
 All done with ideas? -> move on
