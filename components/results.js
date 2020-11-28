@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import Link from 'next/link'
 import styled from 'styled-components'
 
@@ -76,11 +77,42 @@ const NextSteps = styled.div`
 // TODO: add confetti
 // TODO: add winner offer sticker on left side of offer name
 
+// Total revenue goal / price = number of customers
+// total score = 3 metrics combined
+
 const Results = ({
+  ideaData,
   setIdeaID,
   setIdeaData,
   setStage
 }) => {
+  useEffect(() => {
+    const calculatedData = ideaData.map(data => {
+      const {
+        interest,
+        price,
+        revenueGoal,
+        scalability,
+        validation
+      } = data
+
+      const totalScore = parseInt(interest) + parseInt(scalability) + parseInt(validation)
+      const numberOfCustomers = parseInt(revenueGoal) / parseInt(price)
+
+      data.totalScore = totalScore
+      data.numberOfCustomers = Math.round(numberOfCustomers)
+
+      return data
+    }).sort((a, b) => {
+      if (a.totalScore < b.totalScore) return -1;
+      if (a.totalScore > b.totalScore) return 1;
+      return 0;
+    }).reverse()
+
+    setIdeaData(calculatedData)
+    console.log('Data: ', ideaData)
+  }, [])
+
   const restart = () => {
     setIdeaData([])
     setIdeaID()

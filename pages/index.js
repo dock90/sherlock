@@ -87,9 +87,6 @@ const Home = () => {
   const [ideaID, setIdeaID] = useState()
   const [ideaPositionID, setIdeaPositionID] = useState(0)
 
-  console.log('Main Data Store: ', ideaData)
-  console.log('Current Idea ID: ', ideaID)
-
   return (
     <Container>
       <Header />
@@ -172,6 +169,7 @@ const Home = () => {
         }
         {stage === 'results' &&
           <Results
+            ideaData={ideaData}
             setIdeaID={setIdeaID}
             setIdeaData={setIdeaData}
             setStage={setStage}
