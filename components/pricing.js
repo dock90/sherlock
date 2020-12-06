@@ -72,7 +72,7 @@ const Pricing = ({
 
   return (
     <Container>
-      <h1>💰 What price were you thinking of charging for {idea}?</h1>
+      <h1>💰 What price were you thinking of charging for "{idea}"?</h1>
       <p>Ex: $99 (you probably didn’t need this example 😉)</p>
       <input
         onBlur={formatPrice}

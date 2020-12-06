@@ -139,6 +139,17 @@ const Results = ({
   const width = window.innerWidth;
   const height = window.innerHeight;
 
+  const places = [
+    'Second Place',
+    'Third Place',
+    'Fourth Place',
+    'Fifth Place',
+    'Sixth Place',
+    'Seventh Place',
+    'Eight Place',
+    'Ninth Place'
+  ]
+
   return (
     <Container>
       <Confetti
@@ -162,12 +173,12 @@ const Results = ({
       </ScoreContainer>
       {otherIdeas &&
         <OfferContainer>
-          {otherIdeas.map(data => {
+          {otherIdeas.map((data, index) => {
             const { idea, totalScore, numberOfCustomers } = data
             return (
               <OfferLayout>
                 <div>
-                  <h4>Second Place</h4>
+                  <h4>{places[index]}</h4>
                   <h3>{idea}</h3>
                 </div>
                 <div>
