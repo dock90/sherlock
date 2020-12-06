@@ -29,13 +29,28 @@ const RevenueGoal = ({
   setStage
 }) => {
   const [revenueGoal, setRevenueGoal] = useState('')
+  const [revenueNum, setRevenueNum] = useState('')
 
   const idea = ideaData[ideaPositionID].idea
+
+  const formattedRevenue = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD'
+  }).format(revenueGoal).slice(0, -3);
+
+  const formatRevenue = () => {
+    setRevenueNum(revenueGoal)
+    setRevenueGoal(formattedRevenue)
+  }
+
+  const setRevenueToNum = () => {
+    setRevenueGoal(revenueNum)
+  }
 
   const storeRevenueData = () => {
     const currentData = ideaData.map(data => {
       if (data.id === ideaID) {
-        data.revenueGoal = revenueGoal
+        data.revenueGoal = revenueNum
       }
       return data
     })
@@ -50,7 +65,9 @@ const RevenueGoal = ({
       <p>Ex: $20,000 means you would want this idea to generate $20,000 in the next 12 months.</p>
       <p>That could be with multiple launches or an evergreen sales funnel.</p>
       <input
+        onBlur={formatRevenue}
         onChange={() => setRevenueGoal(event.target.value)}
+        onFocus={setRevenueToNum}
         type='text'
         value={revenueGoal}
       />

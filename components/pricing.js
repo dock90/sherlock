@@ -38,7 +38,7 @@ const Pricing = ({
   const formattedPrice = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD'
-  }).format(price);
+  }).format(price).slice(0, -3);
 
   const formatPrice = () => {
     setNumPrice(price)
