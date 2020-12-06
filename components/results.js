@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import styled from 'styled-components'
+import Confetti from 'react-confetti'
 
 const Container = styled.div`
 `
@@ -82,6 +83,7 @@ const Results = ({
   ideaData,
   setIdeaID,
   setIdeaData,
+  setIdeaPositionID,
   setStage
 }) => {
   const [otherIdeas, setOtherIdeas] = useState([])
@@ -124,6 +126,7 @@ const Results = ({
     setIdeaData([])
     setIdeaID()
     setStage('idea')
+    setIdeaPositionID(0)
   }
 
   const bestIdea = ideaData[0]
@@ -133,8 +136,17 @@ const Results = ({
     numberOfCustomers
   } = bestIdea
 
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+
   return (
     <Container>
+      <Confetti
+        width={width}
+        height={height}
+        numberOfPieces={600}
+        recycle={false}
+      />
       <Offer>
         <h1>{idea}</h1>
       </Offer>

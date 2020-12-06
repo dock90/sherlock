@@ -172,6 +172,7 @@ const Home = () => {
             ideaData={ideaData}
             setIdeaID={setIdeaID}
             setIdeaData={setIdeaData}
+            setIdeaPositionID={setIdeaPositionID}
             setStage={setStage}
           />
         }
