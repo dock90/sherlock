@@ -31,13 +31,28 @@ const Pricing = ({
   setStage
 }) => {
   const [price, setPrice] = useState('')
+  const [numPrice, setNumPrice] = useState('')
 
   const idea = ideaData[ideaPositionID].idea
+
+  const formattedPrice = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD'
+  }).format(price);
+
+  const formatPrice = () => {
+    setNumPrice(price)
+    setPrice(formattedPrice)
+  }
+
+  const setPriceToNum = () => {
+    setPrice(numPrice)
+  }
 
   const storePriceData = () => {
     const currentData = ideaData.map(data => {
       if (data.id === ideaID) {
-        data.price = price
+        data.price = numPrice
       }
       return data
     })
@@ -60,7 +75,9 @@ const Pricing = ({
       <h1>💰 What price were you thinking of charging for {idea}?</h1>
       <p>Ex: $99 (you probably didn’t need this example 😉)</p>
       <input
+        onBlur={formatPrice}
         onChange={() => setPrice(event.target.value)}
+        onFocus={setPriceToNum}
         type='text'
         value={price}
       />
