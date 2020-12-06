@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import styled from 'styled-components'
+import Confetti from 'react-confetti'
 
 const Container = styled.div`
 `
@@ -82,6 +83,7 @@ const Results = ({
   ideaData,
   setIdeaID,
   setIdeaData,
+  setIdeaPositionID,
   setStage
 }) => {
   const [otherIdeas, setOtherIdeas] = useState([])
@@ -124,6 +126,7 @@ const Results = ({
     setIdeaData([])
     setIdeaID()
     setStage('idea')
+    setIdeaPositionID(0)
   }
 
   const bestIdea = ideaData[0]
@@ -133,8 +136,28 @@ const Results = ({
     numberOfCustomers
   } = bestIdea
 
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+
+  const places = [
+    'Second Place',
+    'Third Place',
+    'Fourth Place',
+    'Fifth Place',
+    'Sixth Place',
+    'Seventh Place',
+    'Eight Place',
+    'Ninth Place'
+  ]
+
   return (
     <Container>
+      <Confetti
+        width={width}
+        height={height}
+        numberOfPieces={3000}
+        recycle={false}
+      />
       <Offer>
         <h1>{idea}</h1>
       </Offer>
@@ -150,12 +173,12 @@ const Results = ({
       </ScoreContainer>
       {otherIdeas &&
         <OfferContainer>
-          {otherIdeas.map(data => {
+          {otherIdeas.map((data, index) => {
             const { idea, totalScore, numberOfCustomers } = data
             return (
               <OfferLayout>
                 <div>
-                  <h4>Second Place</h4>
+                  <h4>{places[index]}</h4>
                   <h3>{idea}</h3>
                 </div>
                 <div>
