@@ -144,7 +144,7 @@ const Results = ({
       <Confetti
         width={width}
         height={height}
-        numberOfPieces={600}
+        numberOfPieces={3000}
         recycle={false}
       />
       <Offer>

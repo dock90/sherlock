@@ -12,10 +12,15 @@ const Logo = styled.img`
   max-width: 200px;
 `
 
-const Header = () => {
+const Header = ({
+  restart
+}) => {
   return (
     <Container>
-      <Logo src='/logo.png' />
+      <Logo
+        onClick={restart}
+        src='/logo.png'
+      />
     </Container>
   )
 }

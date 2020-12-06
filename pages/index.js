@@ -87,9 +87,16 @@ const Home = () => {
   const [ideaID, setIdeaID] = useState()
   const [ideaPositionID, setIdeaPositionID] = useState(0)
 
+  const restart = () => {
+    setIdeaData([])
+    setIdeaID()
+    setStage('start')
+    setIdeaPositionID(0)
+  }
+
   return (
     <Container>
-      <Header />
+      <Header restart={restart} />
       <Body>
         {stage === 'start' &&
           <Start setStage={setStage} />
