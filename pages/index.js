@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import Link from 'next/link'
 import styled from 'styled-components'
 // components
 import Header from '../components/header'
@@ -18,16 +17,22 @@ import Results from '../components/results'
 // styles
 const Container = styled.div`
   display: grid;
-  grid-template-rows: 100px auto;
+  grid-template-rows: 100px 1fr 50px;
   grid-template-columns: 1fr;
-  height: 100vh;
+  height: 90vh;
+  padding: 1rem;
+  justify-items: center;
+  align-items: center;
 `
 
 const Body = styled.div`
   display: grid;
   justify-content: center;
-  max-width: 90vw;
-  margin: 10rem auto 0 auto;
+  padding: 4rem;
+  box-shadow: 0 3px 10px 3px rgba(0,0,0,0.1);
+  border: none;
+  border-radius: 5px;
+  width: 60vw;
 
   button {
     background: ${({ theme }) => theme.colors.primary};
@@ -43,8 +48,9 @@ const Body = styled.div`
 `
 
 const BroughtBy = styled.div`
-  display: grid;
-  align-self: end;
+  position: absolute;
+  bottom: -10px;
+  left: 0;
 
   img {
     width: 100%;
@@ -55,8 +61,9 @@ const BroughtBy = styled.div`
 
   div {
     position: absolute;
-    bottom: 1%;
-    left: 8%;
+    bottom: 10%;
+    left: 50%;
+    width: 50%;
     background: #fef0f0;
     border-radius: 5px;
     padding: 0 1rem;
@@ -66,6 +73,10 @@ const BroughtBy = styled.div`
       color: ${({ theme }) => theme.colors.dark1};
     }
   }
+
+  @media only screen and (max-width: 600px) {
+    display: none;
+}
 `
 
 // data structure
