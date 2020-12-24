@@ -12,7 +12,7 @@ const Container = styled.div`
   input {
     display: grid;
     margin: 2rem auto 0 auto;
-    min-width: 600px;
+    width: 60vw;
   }
 `
 
@@ -20,7 +20,7 @@ const Labels = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   margin: 0 auto 2rem auto;
-  width: 600px;
+  width: 60vw;
 
   p:nth-child(1) {
     justify-self: start;

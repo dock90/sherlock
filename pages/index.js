@@ -33,6 +33,7 @@ const Body = styled.div`
   border: none;
   border-radius: 5px;
   width: 60vw;
+  background: #FFFFFF;
 
   button {
     background: ${({ theme }) => theme.colors.primary};
@@ -44,6 +45,30 @@ const Body = styled.div`
     border: none;
     border-radius: 5px;
     box-shadow: 0 3px 10px 3px rgba(0,0,0,0.1)
+  }
+`
+
+const LeftShape = styled.img`
+  position: absolute;
+  top: 20%;
+  left: 5%;
+  height: 400px;
+  z-index: -1;
+
+  @media only screen and (max-width: 760px) {
+    display: none;
+  }
+`
+
+const RightShape = styled.img`
+  position: absolute;
+  top: 40%;
+  right: 5%;
+  height: 400px;
+  z-index: -1;
+
+  @media only screen and (max-width: 760px) {
+    display: none;
   }
 `
 
@@ -74,23 +99,10 @@ const BroughtBy = styled.div`
     }
   }
 
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: 760px) {
     display: none;
-}
+  }
 `
-
-// data structure
-// const data = [
-//   {
-//     id: Number,
-//     idea: String,
-//     scalability: Number,
-//     interest: Number,
-//     validation: Number,
-//     revenueGoal: Number,
-//     price: Number
-//   }
-// ]
 
 const Home = () => {
   const [stage, setStage] = useState('start')
@@ -194,6 +206,8 @@ const Home = () => {
             setStage={setStage}
           />
         }
+        <LeftShape src='/bg-shape-now-right.svg' />
+        <RightShape src='/bg-shape-now-left.svg' />
       </Body>
       {stage === 'start' &&
         <BroughtBy>
