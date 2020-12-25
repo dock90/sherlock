@@ -21,6 +21,10 @@ const Container = styled.div`
   }
 `
 
+const Error = styled.p`
+  color: #ff3333;
+`
+
 const Idea = ({
   ideaData,
   setIdeaData,
@@ -28,20 +32,33 @@ const Idea = ({
   setStage
 }) => {
   const [idea, setIdea] = useState('')
+  const [noIdea, setNoIdea] = useState(false)
+
+  const ideaChange = (value) => {
+    setNoIdea(false)
+    setIdea(value)
+  }
 
   const storeIdea = () => {
-    const id = Math.floor(Math.random() * 1000)
-    const currentIdea = {
-      id: id,
-      idea: idea
-    }
+    const formattedIdea = idea.trim()
+    if (formattedIdea === '') {
+      console.log('Oy, you need to put in an idea')
+      setNoIdea(true)
+    } else {
+      setNoIdea(false)
+      const id = Math.floor(Math.random() * 1000)
+      const currentIdea = {
+        id: id,
+        idea: idea
+      }
 
-    setIdeaID(id)
-    setIdeaData([
-      ...ideaData,
-      currentIdea
-    ])
-    setStage('scalability')
+      setIdeaID(id)
+      setIdeaData([
+        ...ideaData,
+        currentIdea
+      ])
+      setStage('scalability')
+    }
   }
 
   return (
@@ -49,10 +66,11 @@ const Idea = ({
       <h1>Question #1</h1>
       <h2>What is your offer idea?</h2>
       <input
-        onChange={() => setIdea(event.target.value)}
+        onChange={() => ideaChange(event.target.value)}
         type='text'
         value={idea}
       />
+      {noIdea && <Error>Oy, you need to put in an idea!</Error>}
       <button onClick={storeIdea}>Next</button>
     </Container>
   )

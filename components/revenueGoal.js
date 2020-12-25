@@ -21,6 +21,10 @@ const Container = styled.div`
   }
 `
 
+const Error = styled.p`
+  color: #ff3333;
+`
+
 const RevenueGoal = ({
   ideaData,
   ideaID,
@@ -30,6 +34,7 @@ const RevenueGoal = ({
 }) => {
   const [revenueGoal, setRevenueGoal] = useState('')
   const [revenueNum, setRevenueNum] = useState('')
+  const [noRevenue, setNoRevenue] = useState(false)
 
   const idea = ideaData[ideaPositionID].idea
 
@@ -37,6 +42,11 @@ const RevenueGoal = ({
     style: 'currency',
     currency: 'USD'
   }).format(revenueGoal).slice(0, -3);
+
+  const revenueChange = (value) => {
+    setNoRevenue(false)
+    setRevenueGoal(value)
+  }
 
   const formatRevenue = () => {
     setRevenueNum(revenueGoal)
@@ -55,8 +65,13 @@ const RevenueGoal = ({
       return data
     })
 
-    setIdeaData(currentData)
-    setStage('pricing')
+    if (revenueGoal === '') {
+      console.log('Oy, you need to put in an idea')
+      setNoRevenue(true)
+    } else {
+      setIdeaData(currentData)
+      setStage('pricing')
+    }
   }
 
   return (
@@ -66,11 +81,12 @@ const RevenueGoal = ({
       <p>That could be with multiple launches or an evergreen sales funnel.</p>
       <input
         onBlur={formatRevenue}
-        onChange={() => setRevenueGoal(event.target.value)}
+        onChange={() => revenueChange(event.target.value)}
         onFocus={setRevenueToNum}
         type='text'
         value={revenueGoal}
       />
+      {noRevenue && <Error>Oy, you need to put in a revenue goal!</Error>}
       <button onClick={storeRevenueData}>Next</button>
     </Container>
   )
