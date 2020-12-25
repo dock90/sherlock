@@ -22,9 +22,15 @@ const ScoreContainer = styled.div`
   text-align: center;
 
   border-bottom: 2px solid ${({ theme }) => theme.colors.dark2};
+
+  @media only screen and (max-width: 1190px) {
+    grid-gap: 4rem;
+  }
 `
 
 const Metric = styled.div`
+  display: grid;
+
   h3 {
     display: grid;
     justify-content: center;
@@ -33,6 +39,7 @@ const Metric = styled.div`
     padding: 0.5rem 4rem;
     border-radius: 5px;
     box-shadow: 0 1px 3px hsla(0, 0%, 0%, .2);
+    align-self: end;
   }
 `
 
@@ -73,7 +80,6 @@ const NextSteps = styled.div`
 `
 
 // TODO: add jason / caroline in top right corner
-// TODO: add confetti
 // TODO: add winner offer sticker on left side of offer name
 
 // Total revenue goal / price = number of customers

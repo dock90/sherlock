@@ -3,7 +3,7 @@ import styled from 'styled-components'
 // styles
 const Container = styled.div`
   display: grid;
-  padding: 0 2rem;
+  justify-self: start;
 `
 
 const Logo = styled.img`

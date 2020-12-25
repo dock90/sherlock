@@ -15,6 +15,7 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
+    overflow: hidden;
   }
 
   h1 {
@@ -24,6 +25,16 @@ const GlobalStyle = createGlobalStyle`
 
   h2 {
     color: ${theme.colors.dark2};
+  }
+
+  @media only screen and (max-width: 1190px) {
+    h1 {
+      font-size: 38px;
+    }
+
+    h2 {
+      font-size: 20px;
+    }
   }
 `
 
