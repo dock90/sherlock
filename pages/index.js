@@ -17,12 +17,17 @@ import Results from '../components/results'
 // styles
 const Container = styled.div`
   display: grid;
-  grid-template-rows: 100px 1fr 50px;
+  grid-template-rows: 100px 1fr 120px;
   grid-template-columns: 1fr;
-  height: 90vh;
+  height: 100vh;
   padding: 1rem;
   justify-items: center;
   align-items: center;
+  overflow-y: scroll;
+
+  @media screen and (max-width: 600px) {
+    grid-template-rows: 100px 1fr 50px;
+  }
 `
 
 const Body = styled.div`
@@ -42,9 +47,15 @@ const Body = styled.div`
     text-transform: uppercase;
     padding: 10px 15px;
     min-width: 200px;
-    border: none;
+    border: 2px solid ${({ theme }) => theme.colors.primary};
     border-radius: 5px;
-    box-shadow: 0 3px 10px 3px rgba(0,0,0,0.1)
+    box-shadow: 0 3px 10px 3px rgba(0,0,0,0.1);
+    cursor: pointer;
+
+    :hover {
+      background: ${({ theme }) => theme.colors.light1};
+      color: ${({ theme }) => theme.colors.primary};
+    }
   }
 `
 
@@ -209,14 +220,16 @@ const Home = () => {
         <LeftShape src='/bg-shape-now-right.svg' />
         <RightShape src='/bg-shape-now-left.svg' />
       </Body>
-      {stage === 'start' &&
-        <BroughtBy>
-          <img src='/jasoncaroline.png' />
-          <div>
-            <h4>Brought to <br />you by WAIM</h4>
-          </div>
-        </BroughtBy>
-      }
+      <div>
+        {stage === 'start' &&
+          <BroughtBy>
+            <img src='/jasoncaroline.png' />
+            <div>
+              <h4>Brought to <br />you by WAIM</h4>
+            </div>
+          </BroughtBy>
+        }
+      </div>
     </Container>
   )
 }

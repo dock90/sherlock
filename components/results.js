@@ -2,8 +2,7 @@ import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import Confetti from 'react-confetti'
 
-const Container = styled.div`
-`
+const Container = styled.div``
 
 const Offer = styled.div`
   display: grid;
@@ -180,9 +179,9 @@ const Results = ({
       {otherIdeas &&
         <OfferContainer>
           {otherIdeas.map((data, index) => {
-            const { idea, totalScore, numberOfCustomers } = data
+            const { id, idea, totalScore, numberOfCustomers } = data
             return (
-              <OfferLayout>
+              <OfferLayout key={id}>
                 <div>
                   <h4>{places[index]}</h4>
                   <h3>{idea}</h3>
