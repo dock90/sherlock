@@ -4,6 +4,7 @@ import styled from 'styled-components'
 const Container = styled.div`
   display: grid;
   justify-self: start;
+  padding: 1rem;
 `
 
 const Logo = styled.img`

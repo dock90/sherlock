@@ -2,6 +2,7 @@ import { useState } from 'react'
 import styled from 'styled-components'
 
 const Container = styled.div`
+  padding: 4rem;
   text-align: center;
 
   p {
@@ -13,6 +14,14 @@ const Container = styled.div`
     display: grid;
     margin: 2rem auto 0 auto;
     width: 56vw;
+  }
+
+  @media screen and (max-width: 600px) {
+    padding: 2rem;
+
+    input {
+      width: 58vw;
+    }
   }
 `
 

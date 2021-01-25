@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import NumberFormat from 'react-number-format';
 
 const Container = styled.div`
+  padding: 4rem;
   text-align: center;
 
   input {
@@ -18,6 +19,13 @@ const Container = styled.div`
     :focus {
       box-shadow: 0 1px 3px hsla(237, 100%, 58%, .6);
       outline: none;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    padding: 2rem;
+    input {
+      min-width: 300px;
     }
   }
 `

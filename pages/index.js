@@ -17,13 +17,11 @@ import Results from '../components/results'
 // styles
 const Container = styled.div`
   display: grid;
-  grid-template-rows: 100px 1fr 120px;
+  grid-template-rows: 100px 1.8fr 100px;
   grid-template-columns: 1fr;
   height: 100vh;
-  padding: 1rem;
   justify-items: center;
   align-items: center;
-  overflow-y: scroll;
 
   @media screen and (max-width: 600px) {
     grid-template-rows: 100px 1fr 50px;
@@ -33,11 +31,10 @@ const Container = styled.div`
 const Body = styled.div`
   display: grid;
   justify-content: center;
-  padding: 4rem;
   box-shadow: 0 3px 10px 3px rgba(0,0,0,0.1);
   border: none;
   border-radius: 5px;
-  width: 60vw;
+  width: 70vw;
   background: #FFFFFF;
 
   button {
@@ -56,6 +53,10 @@ const Body = styled.div`
       background: ${({ theme }) => theme.colors.light1};
       color: ${({ theme }) => theme.colors.primary};
     }
+  }
+
+  @media screen and (max-width: 600px) {
+    width: 90vw;
   }
 `
 

@@ -2,7 +2,13 @@ import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import Confetti from 'react-confetti'
 
-const Container = styled.div``
+const Container = styled.div`
+  padding: 4rem;
+
+  @media only screen and (max-width: 1190px) {
+    padding: 2rem;
+  }
+`
 
 const Offer = styled.div`
   display: grid;
@@ -11,6 +17,7 @@ const Offer = styled.div`
   padding: 0 2rem;
   border-radius: 5px;
   box-shadow: 0 1px 3px hsla(0, 0%, 0%, .2);
+  text-align: center;
 `
 
 const ScoreContainer = styled.div`
@@ -23,7 +30,8 @@ const ScoreContainer = styled.div`
   border-bottom: 2px solid ${({ theme }) => theme.colors.dark2};
 
   @media only screen and (max-width: 1190px) {
-    grid-gap: 4rem;
+    grid-template-columns: 1fr;
+    grid-gap: 2rem;
   }
 `
 
@@ -39,6 +47,15 @@ const Metric = styled.div`
     border-radius: 5px;
     box-shadow: 0 1px 3px hsla(0, 0%, 0%, .2);
     align-self: end;
+  }
+
+  @media only screen and (max-width: 1190px) {
+    grid-gap: 2rem;
+    margin-bottom: 1rem;
+
+    h2, h3 {
+      margin: 0;
+    }
   }
 `
 
@@ -67,9 +84,25 @@ const OfferLayout = styled.div`
 
   div {
     text-align: center;
+  }
 
-    :not(:last-child) {
-      border-right: 2px solid ${({ theme }) => theme.colors.dark2}
+  @media screen and (min-width: 600px) {
+    div {
+      :not(:last-child) {
+        border-right: 2px solid ${({ theme }) => theme.colors.dark2}
+      }
+    }
+  }
+
+
+
+  @media screen and (max-width: 600px) {
+    grid-template-columns: 1fr;
+
+    div {
+      :not(:last-child) {
+      border-bottom: 2px solid ${({ theme }) => theme.colors.dark2}
+    }
     }
   }
 `

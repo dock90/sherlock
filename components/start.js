@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 // styles
 const Container = styled.div`
+  padding: 4rem;
   text-align: center;
 `
 

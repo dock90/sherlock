@@ -1,10 +1,15 @@
 import styled from 'styled-components'
 
 const Container = styled.div`
+  padding: 4rem;
   text-align: center;
 
   button {
     margin: 2rem 1rem;
+  }
+
+  @media screen and (max-width: 600px) {
+    padding: 2rem;
   }
 `
 

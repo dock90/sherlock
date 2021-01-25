@@ -1,7 +1,12 @@
 import styled from 'styled-components'
 
 const Container = styled.div`
+  padding: 4rem;
   text-align: center;
+
+  @media screen and (max-width: 600px) {
+    padding: 2rem;
+  }
 `
 
 const Drumroll = ({ setStage }) => (
