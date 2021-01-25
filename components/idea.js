@@ -19,6 +19,12 @@ const Container = styled.div`
       outline: none;
     }
   }
+
+  @media screen and (max-width: 600px) {
+    input {
+      min-width: 300px;
+    }
+  }
 `
 
 const Error = styled.p`

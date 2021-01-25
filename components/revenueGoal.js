@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import styled from 'styled-components'
+import NumberFormat from 'react-number-format';
 
 const Container = styled.div`
   text-align: center;
@@ -33,40 +34,25 @@ const RevenueGoal = ({
   setStage
 }) => {
   const [revenueGoal, setRevenueGoal] = useState('')
-  const [revenueNum, setRevenueNum] = useState('')
   const [noRevenue, setNoRevenue] = useState(false)
 
   const idea = ideaData[ideaPositionID].idea
 
-  const formattedRevenue = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD'
-  }).format(revenueGoal).slice(0, -3);
-
-  const revenueChange = (value) => {
+  const handleRevenueChange = (values) => {
     setNoRevenue(false)
+    const { value } = values;
     setRevenueGoal(value)
-  }
-
-  const formatRevenue = () => {
-    setRevenueNum(revenueGoal)
-    setRevenueGoal(formattedRevenue)
-  }
-
-  const setRevenueToNum = () => {
-    setRevenueGoal(revenueNum)
   }
 
   const storeRevenueData = () => {
     const currentData = ideaData.map(data => {
       if (data.id === ideaID) {
-        data.revenueGoal = revenueNum
+        data.revenueGoal = revenueGoal
       }
       return data
     })
 
     if (revenueGoal === '') {
-      console.log('Oy, you need to put in an idea')
       setNoRevenue(true)
     } else {
       setIdeaData(currentData)
@@ -79,12 +65,12 @@ const RevenueGoal = ({
       <h1>What is your annual Total Revenue Goal 💰 for "{idea}"?</h1>
       <p>Ex: $20,000 means you would want this idea to generate $20,000 in the next 12 months.</p>
       <p>That could be with multiple launches or an evergreen sales funnel.</p>
-      <input
-        onBlur={formatRevenue}
-        onChange={() => revenueChange(event.target.value)}
-        onFocus={setRevenueToNum}
-        type='text'
+      <NumberFormat
         value={revenueGoal}
+        thousandSeparator={true}
+        prefix={'$'}
+        placeholder='$20,000'
+        onValueChange={values => handleRevenueChange(values)}
       />
       {noRevenue && <Error>Oy, you need to put in a revenue goal!</Error>}
       <button onClick={storeRevenueData}>Next</button>

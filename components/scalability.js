@@ -12,22 +12,24 @@ const Container = styled.div`
   input {
     display: grid;
     margin: 2rem auto 0 auto;
-    width: 60vw;
+    width: 56vw;
   }
 `
 
 const Labels = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(10, 1fr);
   margin: 0 auto 2rem auto;
   width: 60vw;
+  justify-items: center;
+  justify-content: space-between;
 
-  p:nth-child(1) {
-    justify-self: start;
+  p {
+    opacity: 25%;
   }
 
-  p:nth-child(2) {
-    justify-self: end;
+  p:nth-child(1), p:nth-child(10) {
+    opacity: 100%;
   }
 `
 
@@ -75,6 +77,14 @@ const Scalability = ({
       />
       <Labels>
         <p>1</p>
+        <p>2</p>
+        <p>3</p>
+        <p>4</p>
+        <p>5</p>
+        <p>6</p>
+        <p>7</p>
+        <p>8</p>
+        <p>9</p>
         <p>10</p>
       </Labels>
       <button onClick={storeScalability}>Next</button>
