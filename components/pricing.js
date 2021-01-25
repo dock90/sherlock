@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import styled from 'styled-components'
+import NumberFormat from 'react-number-format';
 
 const Container = styled.div`
   text-align: center;
@@ -35,34 +36,20 @@ const Pricing = ({
   setStage
 }) => {
   const [price, setPrice] = useState('')
-  const [numPrice, setNumPrice] = useState('')
   const [noPrice, setNoPrice] = useState(false)
 
   const idea = ideaData[ideaPositionID].idea
 
-  const formattedPrice = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD'
-  }).format(price).slice(0, -3);
-
-  const priceChange = (value) => {
+  const handlePriceChange = (values) => {
     setNoPrice(false)
+    const { value } = values;
     setPrice(value)
-  }
-
-  const formatPrice = () => {
-    setNumPrice(price)
-    setPrice(formattedPrice)
-  }
-
-  const setPriceToNum = () => {
-    setPrice(numPrice)
   }
 
   const storePriceData = () => {
     const currentData = ideaData.map(data => {
       if (data.id === ideaID) {
-        data.price = numPrice
+        data.price = price
       }
       return data
     })
@@ -88,12 +75,12 @@ const Pricing = ({
     <Container>
       <h1>💰 What price were you thinking of charging for "{idea}"?</h1>
       <p>Ex: $99 (you probably didn’t need this example 😉)</p>
-      <input
-        onBlur={formatPrice}
-        onChange={() => priceChange(event.target.value)}
-        onFocus={setPriceToNum}
-        type='text'
+      <NumberFormat
         value={price}
+        thousandSeparator={true}
+        prefix={'$'}
+        placeholder='$99'
+        onValueChange={values => handlePriceChange(values)}
       />
       {noPrice && <Error>Oy, you need to put in a price!</Error>}
       <button onClick={storePriceData}>Next</button>
