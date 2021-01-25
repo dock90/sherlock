@@ -2,6 +2,7 @@ import { useState } from 'react'
 import styled from 'styled-components'
 
 const Container = styled.div`
+  padding: 4rem;
   text-align: center;
 
   input {
@@ -21,6 +22,8 @@ const Container = styled.div`
   }
 
   @media screen and (max-width: 600px) {
+    padding: 2rem;
+
     input {
       min-width: 300px;
     }
